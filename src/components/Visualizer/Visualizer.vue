@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <ButtonGroup
+    <VisualizerButtonGroup
       @generate-new-array="generateNewArray"
       @do-merge-sort="mergeSort"
       @do-insertion-sort="insertionSort"
@@ -23,11 +23,10 @@
 </template>
 
 <script>
-import ButtonGroup from "@/components/VisualizerButtonGroup";
-
 import {getMergeSortAnimations} from "@/sortingAlgorithms/mergeSort";
 import {getQuickSortAnimations} from "@/sortingAlgorithms/quicksort";
 import {getInsertionSortAnimations} from "@/sortingAlgorithms/insertionSort";
+import VisualizerButtonGroup from "@/components/Visualizer/VisualizerButtonGroup";
 import util from "@/util";
 
 export default {
@@ -82,7 +81,7 @@ export default {
   },
 
   components: {
-    ButtonGroup,
+    VisualizerButtonGroup,
   },
 
   methods: {
@@ -212,7 +211,7 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
-@import '../assets/css/animations.css';
+@import '../../assets/css/animations.css';
 
 .visualizer-title {
   text-align: center;

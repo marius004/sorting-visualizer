@@ -1,49 +1,33 @@
 <template>
-  <div class="app">
-    <div class="container-fluid">
-      <Visualizer
-          :barThickness="barThickness"
-          :spaceBetweenBars="spaceBetweenBars"
-      />
-      <Footer />
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/visualize">Visualizer</router-link>
     </div>
+    <router-view/>
   </div>
 </template>
 
-<script>
-import Visualizer from "@/components/Visualizer";
-import Footer from "@/components/Footer";
-
-export default {
-  name: 'App',
-
-  components: {
-    Footer,
-    Visualizer,
-  },
-
-  data() {
-    return {
-      barThickness: 5,
-      spaceBetweenBars: 1,
-    }
-  }
-
-}
-</script>
-
 <style>
-html, body {
-  margin: 0px;
-  height:100%;
-  background-color: var(--background--color);
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-:root {
-  --background--color: #f5f5f5;
+
+#nav {
+  padding: 12px;
 }
-.app {
-  padding-top: 7px;
-  width: 100%;
-  height: 100%;
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

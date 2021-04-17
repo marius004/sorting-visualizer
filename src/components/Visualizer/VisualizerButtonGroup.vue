@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "ButtonGroup",
+  name: "VisualizerButtonGroup",
 
   emits: ['generate-new-array', 'do-merge-sort', 'do-bubble-sort', 'do-quick-sort'],
 
