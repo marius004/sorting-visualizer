@@ -1,3 +1,5 @@
+Website: https://optimistic-meitner-c335ee.netlify.app/
+
 # sorting-visualizer
 
 ## Project setup
