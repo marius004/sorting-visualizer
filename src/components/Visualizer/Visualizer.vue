@@ -94,8 +94,7 @@ export default {
 
     handleResize() {
 
-      console.log(this.isDisabled);
-
+      /// resize the browser back to its size if a sorting algorithm is running.
       if(this.isDisabled) {
         window.resizeTo(this.windowInnerWidth, this.windowInnerHeight);
         return;
@@ -104,6 +103,7 @@ export default {
       const data = util.calculateVisualizerDimensions(this.$refs.visualizerRef, this.barThickness, this.spaceBetweenBars);
 
       /// width resize
+      /// case 1: add new rows to the existing array
       if(data.width > this.rows) {
 
         for(let i = 0;i < data.width - this.rows;++i) {
@@ -116,6 +116,7 @@ export default {
         this.rows = data.width;
       }
 
+      /// case 2: delete rows from the existing array
       else if(data.width < this.rows) {
         for(let i = 0;i < this.rows - data.width;++i)
           this.bars.pop();
@@ -123,9 +124,11 @@ export default {
         this.rows = data.width;
       }
 
-       if(Math.abs(this.maxHeight - data.height) > 50) {
-        this.bars = util.generateRandomBars(this.rows, data.height);
+      /// height resize
+      /// generate a new array when the difference between the last state and the current state is more than 50px
+      if(Math.abs(this.maxHeight - data.height) > 50) {
         this.maxHeight = data.height;
+        this.generateNewArray();
       }
 
       this.windowInnerWidth = window.innerWidth;
@@ -136,6 +139,7 @@ export default {
       this.bars = util.generateRandomBars(this.rows, this.maxHeight);
     },
 
+    //// make the button groups buttons disabled for a specific amount of time
     disableButtonsFor(time) {
       this.isDisabled = true;
 
@@ -163,32 +167,6 @@ export default {
       }
 
       this.disableButtonsFor(animations.length * this.timeout);
-    },
-
-    animateBubbleSort(animations) {
-
-      window.scroll(0, 0);
-
-      for(let i = 0;i < animations.length;++i) {
-        setTimeout(() => {
-          if(animations[i][2] == "color") {
-
-            this.bars[ animations[i][0] ].color = "red";
-            this.bars[ animations[i][1] ].color = "red";
-
-          } else if(animations[i][2] == "revert") {
-
-            this.bars[ animations[i][0] ].color = "black";
-            this.bars[ animations[i][1] ].color = "black";
-
-          } else {
-            [this.bars[animations[i][0]], this.bars[animations[i][1]]] =
-                [ this.bars[animations[i][1]], this.bars[animations[i][0]]];
-          }
-
-        }, i * this.timeout / 4);
-      }
-      this.disableButtonsFor(this.timeout / 4 * animations.length);
     },
 
     animateQuickSort(animations) {

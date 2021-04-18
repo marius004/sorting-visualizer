@@ -5,7 +5,6 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
-    <Footer />
   </div>
 </template>
 
@@ -34,8 +33,7 @@
 }
 </style>
 <script>
-import Footer from "@/components/Footer";
 export default {
-  components: {Footer}
+  name: "App",
 }
 </script>
