@@ -41,7 +41,13 @@ export default {
       bars: [],
       timeout: 5,
       isDisabled: false,
+      windowInnerWidth: window.innerWidth,
+      windowInnerHeight: window.innerHeight,
     };
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
   },
 
   mounted() {
@@ -52,7 +58,7 @@ export default {
     this.rows      = data.width;
     this.maxHeight = data.height;
     this.bars = util.generateRandomBars(this.rows, this.maxHeight);
-    console.log(this.bars);
+    window.addEventListener('resize', this.handleResize);
   },
 
   computed: {
@@ -85,6 +91,46 @@ export default {
   },
 
   methods: {
+
+    handleResize() {
+
+      console.log(this.isDisabled);
+
+      if(this.isDisabled) {
+        window.resizeTo(this.windowInnerWidth, this.windowInnerHeight);
+        return;
+      }
+
+      const data = util.calculateVisualizerDimensions(this.$refs.visualizerRef, this.barThickness, this.spaceBetweenBars);
+
+      /// width resize
+      if(data.width > this.rows) {
+
+        for(let i = 0;i < data.width - this.rows;++i) {
+          this.bars.push({
+            height: util.randomBetween(10, data.height),
+            color: "black",
+          });
+        }
+
+        this.rows = data.width;
+      }
+
+      else if(data.width < this.rows) {
+        for(let i = 0;i < this.rows - data.width;++i)
+          this.bars.pop();
+
+        this.rows = data.width;
+      }
+
+       if(Math.abs(this.maxHeight - data.height) > 50) {
+        this.bars = util.generateRandomBars(this.rows, data.height);
+        this.maxHeight = data.height;
+      }
+
+      this.windowInnerWidth = window.innerWidth;
+      this.windowInnerHeight = window.innerHeight;
+    },
 
     generateNewArray() {
       this.bars = util.generateRandomBars(this.rows, this.maxHeight);
@@ -200,7 +246,6 @@ export default {
 
     insertionSort() {
       const animations = getInsertionSortAnimations(this.bars);
-      console.log(animations);
       this.animateInsertionSort(animations);
     },
 

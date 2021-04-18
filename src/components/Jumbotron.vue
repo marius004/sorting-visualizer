@@ -84,7 +84,7 @@ p {
 
 .fadeOne-enter-active, .fadeOne-leave-active {
   transition: all .5s ease-out;
-  transition-delay: 0.1s;
+  transition-delay: 0.2s;
 }
 .fadeOne-enter, .fadeOne-leave-to {
   clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
@@ -93,7 +93,7 @@ p {
 
 .fadeTwo-enter-active, .fadeTwo-leave-active {
   transition: all .5s ease-out;
-  transition-delay: 0.1s;
+  transition-delay: 0.2s;
 }
 .fadeTwo-enter, .fadeTwo-leave-to {
   clip-path: polygon(0% 100%, 100% 100%, 0% 100%, 0% 100%);

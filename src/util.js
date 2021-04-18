@@ -1,6 +1,7 @@
 const util = {
     calculateVisualizerDimensions,
     generateRandomBars,
+    randomBetween,
 };
 
 /*
@@ -21,7 +22,7 @@ function calculateVisualizerDimensions(visualizerDiv, barThickness, spaceBetween
 // returns the maximum number of rows we can fill the visualizer with
 function calculateVisualizerRows(parentWidth, barThickness, spaceBetweenBars) {
     if(parentWidth < 500)
-        parentWidth -= 10;
+        parentWidth -= 30;
     else
         parentWidth -= 100;
     return Math.floor(parentWidth / (barThickness + spaceBetweenBars) - 5);

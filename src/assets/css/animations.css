@@ -28,31 +28,3 @@
         transform: translate3d(16px, 0, 0);
     }
 }
-
-.popout {
-    animation: popout 1.2s ease;
-    -webkit-animation: popout 1s ease;
-    animation-iteration-count: infinite;
-    animation-delay: 2s;
-    /*  TODO compatibility with other browsers*/
-}
-
-@media only screen and (max-width: 600px) {
-    .popout {
-        animation-iteration-count: 0;
-        -moz-animation-iteration-count: 0;
-        -webkit-animation-iteration-count: 0;
-    }
-}
-
-@keyframes popout {
-    from{transform:scale(1)}
-    60%{transform:scale(1.004)}
-    to{transform:scale(1)}
-}
-
-@-webkit-keyframes popout {
-    from{-webkit-transform:scale(0)}
-    80%{-webkit-transform:scale(1.2)}
-    to{-webkit-transform:scale(1)}
-}
