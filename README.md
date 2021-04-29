@@ -1,5 +1,7 @@
 # sorting-visualizer
 
+## Website: https://optimistic-meitner-c335ee.netlify.app/
+
 ## Project setup
 ```
 npm install
